@@ -1,0 +1,3 @@
+. gb._gohome
+
+ls -tr bags

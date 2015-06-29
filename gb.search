@@ -1,0 +1,55 @@
+. gb._gohome
+
+rm .results
+
+command="grep -l \"$1\" .*"
+
+#for var in "$@"
+#do 
+#
+# echo $var
+#
+# if [ "${var::1}" = "~" ]
+# then
+#  grep -vl "$var" .* > .results_new
+# else
+#  grep -l "$var" .* > .results_new
+# fi
+#
+# if [ -a .results_old ]
+# then
+#  diff -u .results_new .results_old \
+#   | grep -E "^ " \
+#   | sed "s/^ //" \
+#   > .results_old
+# else
+#  mv .results_new .results_old
+# fi
+#
+# read mymama
+#done
+#
+#exit
+
+#cp .results_old .results
+#rm .results_old
+#rm .results_new
+grep -l "$1" .* > ..search_output
+
+i=1
+for f in `cat ..search_output`
+do
+ echo ----------------Result $i----------------
+ cat ..search_output | head -n $i | tail -n 1
+ echo ${f:1}
+ if ! [ "`file -i ${f:1} | grep image | wc -l`" -eq "1" ]
+ then
+  cat ${f:1}
+ else
+  echo "[[Image]]"
+ fi
+ echo ${f:1} >> .results
+
+ let i++
+done
+rm ..search_output

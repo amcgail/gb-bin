@@ -1,0 +1,3 @@
+. gb._gohome
+
+rm bags/$1

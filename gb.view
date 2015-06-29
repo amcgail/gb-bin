@@ -1,0 +1,3 @@
+. gb._gohome
+
+ristretto `gb._resolve $1`

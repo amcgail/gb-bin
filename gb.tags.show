@@ -1,0 +1,10 @@
+. gb._gohome
+
+fname=`gb._resolve $1`
+if ! [ -a $fname ]
+then
+ echo "FILE NOT FOUND"
+ exit
+fi
+
+cat .$fname

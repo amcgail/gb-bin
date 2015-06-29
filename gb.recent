@@ -1,0 +1,22 @@
+. gb._gohome
+
+i=10
+rm .results
+
+for x in \
+ `ls -tr | \
+  grep -v bin | \
+  grep -v random | \
+  grep -v bags | \
+  grep -v backups | 
+  tail -n 10`
+do
+ echo ----------------Result $i----------------
+ cat $x
+ echo $x >> .results_forward
+
+ let i--
+done
+
+tac .results_forward > .results
+rm .results_forward

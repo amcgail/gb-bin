@@ -1,0 +1,18 @@
+. gb._gohome
+
+fname=`gb._resolve $1`
+if ! [ -a $fname ]
+then
+ echo "FILE NOT FOUND"
+ exit
+fi
+
+echo "Enter tags one by one. When you're done, enter an empty line"
+
+#Add tags to meta-file one by one.
+read tagin
+while ! [ "$tagin" = "" ]
+do
+ echo $tagin >> .$fname
+ read tagin
+done

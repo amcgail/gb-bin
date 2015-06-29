@@ -1,0 +1,19 @@
+. gb._gohome
+
+fname1=`gb._resolve $1`
+fname2=`gb._resolve $3`
+conn="$2"
+
+if ! [ -a $fname1 ]
+then
+ echo "FILE 1 NOT FOUND"
+ exit
+fi
+
+if ! [ -a $fname2 ]
+then
+ echo "FILE 2 NOT FOUND"
+ exit
+fi
+
+echo "CONNECTED!"

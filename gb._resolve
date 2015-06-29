@@ -1,0 +1,1 @@
+cat .results | head -n $1 | tail -n 1

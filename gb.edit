@@ -1,0 +1,4 @@
+. gb._gohome
+
+f=`cat .results | head -n $1 | tail -n 1`
+vi $f

@@ -1,0 +1,45 @@
+. gb._gohome
+
+fname=random
+cp $fname backups/$fname`date +%s`
+cp $fname backups/last
+
+cp $fname temp_base
+echo "
+" >> temp_base
+
+while csplit --quiet -f temp temp_base /^$/+1
+do
+ cp temp01 temp_base
+ if [ -z "`cat temp00`" ]; then
+  echo ".................EMPTY NOTE FOUND.................."
+ else
+  echo ".................READING NOTE................."
+  cat temp00
+  uniqueID=`date +%s`
+
+  #Create a separate file which is named by the second it was created
+  #Note:: This means you cannot create multiple notes per second
+  cp temp00 $uniqueID
+
+  #When the thing was created is important
+  echo filed:$uniqueID >> .$uniqueID
+  cat .gen >> .$uniqueID
+
+  echo "PLEASE ADD TAGS TO THIS NOTE"
+  echo "(empty line means you're done)"
+
+  #Add tags to meta-file one by one.
+  read tagin
+  while ! [ "$tagin" = "" ]
+  do
+   echo $tagin >> .$uniqueID
+   read tagin
+  done
+ fi
+done
+
+#Just a little cleanup
+rm $fname
+rm temp00 temp01
+rm temp_base

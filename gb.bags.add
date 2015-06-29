@@ -1,0 +1,3 @@
+. gb._gohome
+
+echo "`gb._resolve $1`" >> bags/$2

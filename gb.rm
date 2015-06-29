@@ -1,0 +1,14 @@
+. gb._gohome
+
+f=`gb._resolve $1`
+cat $f
+echo "ARE YOU SURE??"
+echo "You're about to delete the note above"
+echo "(y/n, default is no)?"
+
+read answer  # get the y/n
+case $answer in    # 
+   y|Y ) rm $f && rm .$f;;
+   n|N ) true;;
+     * ) true;;
+esac

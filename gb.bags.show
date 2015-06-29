@@ -1,0 +1,21 @@
+. gb._gohome
+
+rm .results
+
+i=1
+
+for f in `cat bags/$1`
+do
+ echo ----------------Result $i----------------
+ echo $f
+
+ if ! [ "`file -i $f | grep image | wc -l`" -eq "1" ]
+ then
+  cat $f
+ else
+  echo "[[Image]]"
+ fi
+ echo $f >> .results
+
+ let i++
+done
